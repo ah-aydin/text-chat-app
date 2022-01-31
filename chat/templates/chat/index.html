@@ -1,0 +1,16 @@
+{% extends 'core/index.html' %}
+
+{% load static %}
+
+{% block title %}Welcome{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'chat/index.css' %}" />
+{% endblock style %}
+
+{% block content %}
+<div class="content">
+    <a href={% url 'chat-create' %} id="create-chat-room-link" class="btn-hover">Create Chat Room</a>
+    <a href={% url 'chat-connect' %} id="join-chat-room-link" class="btn-hover">Connect to a Chat Room</a>
+</div>
+{% endblock content %}

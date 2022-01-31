@@ -1,0 +1,50 @@
+{% extends 'core/index.html' %}
+
+{% load static %}
+
+{% block title %}Connect{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'chat/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'chat/form.css' %}" />
+{% endblock style %}
+
+{% block content %}
+<div class="content">
+    <form method="post">
+        <h1>Connect to chat room</h1>
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="id_username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+              {{ form.username }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="id_username" class="col-sm-2 col-form-label">Room name</label>
+            <div class="col-sm-10">
+              {{ form.room_name }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="id_username" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              {{ form.room_password }}
+            </div>
+        </div>
+        <div class="row buttons">
+            <input class="btn-hover col-md-6" id="submit" type="submit" value="Connect">
+            <a href="{% url 'chat-index' %}" class="btn-hover col-md-6" id="btn-back">Back</a>
+        </div>
+    </form>
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+</div>
+
+<script>
+    document.getElementById("id_username").classList.add("form-control");
+    document.getElementById("id_room_name").classList.add("form-control");
+    document.getElementById("id_room_password").classList.add("form-control");
+</script>
+{% endblock content %}
